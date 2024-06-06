@@ -6,7 +6,7 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 5.30"
     }
-     tailscale = {
+    tailscale = {
       source  = "tailscale/tailscale"
       version = ">= 0.16.1"
     }

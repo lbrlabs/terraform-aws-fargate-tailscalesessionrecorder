@@ -13,6 +13,7 @@ data "aws_iam_policy_document" "ecs_assume_role" {
 resource "aws_iam_role" "exec_role" {
   name               = "ecs-task-execution-${var.name}"
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role.json
+  tags               = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "exec_policy" {
@@ -48,6 +49,7 @@ resource "aws_iam_policy" "ecs_task_logs_tailscale" {
   name        = "ecs-task-logs-${var.name}"
   description = "Permissions for ECS task to write logs for Tailscale session recorder"
   policy      = data.aws_iam_policy_document.ecs_task_logs_tailscale.json
+  tags        = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_task_logs_tailscale" {
@@ -59,7 +61,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_logs_tailscale" {
 resource "aws_iam_role" "task_role" {
   name               = "ecs-task-role-${var.name}"
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role.json
-
+  tags               = var.tags
 }
 
 data "aws_s3_bucket" "bucket" {
@@ -92,4 +94,3 @@ resource "aws_iam_role_policy_attachment" "s3_policy" {
   role       = aws_iam_role.task_role.name
   policy_arn = aws_iam_policy.s3_policy.arn
 }
-

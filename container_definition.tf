@@ -9,10 +9,10 @@ locals {
       environment = [{
         "name" : "TSRECORDER_DST",
         "value" : "s3://s3.${data.aws_region.current.name}.amazonaws.com"
-      }, {
+        }, {
         "name" : "TS_AUTH_KEY",
         "value" : var.tailscale_auth_key
-      }, {
+        }, {
         "name" : "TSRECORDER_BUCKET",
         "value" : var.s3_bucket_name
       }]

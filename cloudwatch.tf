@@ -4,4 +4,5 @@ resource "aws_cloudwatch_log_group" "tailscale" {
   #checkov:skip=CKV_AWS_338:Configurable retention
   #checkov:skip=CKV_AWS_158:FIXME: should make this configurable
   retention_in_days = var.cloudwatch_retention_days
+  tags              = var.tags
 }
